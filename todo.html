@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div align="center">
+
+    <h2>📝 To Do List</h2>
+
+    <input type="text" id="task" placeholder="Enter Task"
+    style="padding:10px;width:250px;">
+
+    <button onclick="addTask()">
+        Add
+    </button>
+
+    <br><br>
+
+    <ol id="list"
+    style="
+        display:inline-block;
+        text-align:left;
+        font-size:20px;
+    ">
+    </ol>
+
+</div>
+
+<script>
+
+function addTask(){
+
+    let taskText =
+    document.getElementById("task").value;
+
+    if(taskText == ""){
+        alert("Enter a task");
+        return;
+    }
+
+    let li = document.createElement("li");
+
+    li.style.margin = "10px";
+
+    let circle = document.createElement("span");
+    circle.innerHTML = "⭕ ";
+    circle.style.cursor = "pointer";
+
+    let text = document.createElement("span");
+    text.innerHTML = taskText;
+
+    let del = document.createElement("button");
+    del.innerHTML = " Delete ";
+    del.style.marginLeft = "10px";
+
+    circle.onclick = function(){
+
+        if(circle.innerHTML == "⭕ "){
+
+            circle.innerHTML = "✅ ";
+
+            text.style.textDecoration =
+            "line-through";
+
+            text.style.color = "gray";
+
+        }
+        else{
+
+            circle.innerHTML = "⭕ ";
+
+            text.style.textDecoration =
+            "none";
+
+            text.style.color = "black";
+        }
+    };
+
+    del.onclick = function(){
+        li.remove();
+    };
+
+    li.appendChild(circle);
+    li.appendChild(text);
+    li.appendChild(del);
+
+    document.getElementById("list")
+    .appendChild(li);
+
+    document.getElementById("task").value="";
+}
+
+</script>
+
+</body>
+</html>
